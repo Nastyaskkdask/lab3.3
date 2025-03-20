@@ -1,4 +1,4 @@
-﻿open System
+open System
 open System.IO
 
 let getFiles (directoryPath: string) : seq<string> =
@@ -6,7 +6,7 @@ let getFiles (directoryPath: string) : seq<string> =
         Directory.EnumerateFiles(directoryPath) |> Seq.cache
     with
     | ex ->
-        printfn "Ошибка при перечислении файлов: %s" ex.Message
+        printfn "Ошибка: %s" ex.Message
         Seq.empty 
 
 let compare (filePath1: string) (filePath2: string) : string =
@@ -18,7 +18,6 @@ let compare (filePath1: string) (filePath2: string) : string =
 
 let findLast (directoryPath: string) : string option =
     let files = getFiles directoryPath
-    printfn "Чтение файла: '%s'" files
     if Seq.isEmpty files then
         None  
     else
@@ -26,7 +25,7 @@ let findLast (directoryPath: string) : string option =
 
 [<EntryPoint>]
 let main argv =
-    let defaultDirectory = "C:\Users\Сергей\Desktop\New"  
+    let defaultDirectory = "C:\Users\Сергей\Desktop\Nw "  
 
     let directoryPath =
         if argv.Length > 0 then
@@ -37,8 +36,9 @@ let main argv =
 
     if not (Directory.Exists(directoryPath)) then
         printfn "Каталога '%s' не существует." directoryPath
-
-    printfn "Каталог: %s" directoryPath
+    else 
+        printfn "Каталог: %s" directoryPath
+    
 
     match findLast directoryPath with
     | Some filePath ->
@@ -48,4 +48,5 @@ let main argv =
         printfn "Каталог пуст."
 
     0
+
 
