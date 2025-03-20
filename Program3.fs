@@ -25,7 +25,7 @@ let findLast (directoryPath: string) : string option =
 
 [<EntryPoint>]
 let main argv =
-    let defaultDirectory = "C:\Users\Сергей\Desktop\Nw "  
+    let defaultDirectory = "C:\Users\Сергей\Desktop\New "  
 
     let directoryPath =
         if argv.Length > 0 then
